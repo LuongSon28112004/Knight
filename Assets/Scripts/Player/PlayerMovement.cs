@@ -47,12 +47,12 @@ public class PlayerMovement : ModelMonoBehaviour
     protected virtual void moving(){
         if(playerAnimationController.IsDead) return;
         float x = InputManager.Instance.HorizontalInput;
-        transform.parent.position = new Vector3(transform.parent.position.x + x*moveSpeed * Time.fixedDeltaTime , transform.parent.position.y , transform.parent.position.z);
+        m_rb.linearVelocity = new Vector2(x * moveSpeed, m_rb.linearVelocity.y);
         this.flipDirection(x);
     }
 
     protected void flipDirection(float value){
-         if(value < 0){
+        if(value < 0){
             spriteRenderer.flipX = true;
         }
         else if(value > 0){

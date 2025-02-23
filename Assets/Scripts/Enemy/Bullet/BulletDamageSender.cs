@@ -5,17 +5,18 @@ using UnityEngine;
 public class BulletDamageSender : DamageSender
 {
     private void Start()
-   {
-      InitialAmountDamage();
-   }
+    {
+        InitialAmountDamage();
+    }
 
-   void OnCollisionEnter2D(Collision2D other)
-   {
-      this.SendDamage(other.transform);
-   }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+      //   Debug.Log("" + other.gameObject.name);
+        this.SendDamage(other.transform);
+    }
 
-   protected override void InitialAmountDamage()
-   {
-      this.amount = 1;
-   }
+    protected override void InitialAmountDamage()
+    {
+        this.amount = 1;
+    }
 }

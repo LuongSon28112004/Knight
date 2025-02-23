@@ -5,31 +5,54 @@ using UnityEngine;
 
 public class InputManager : ModelMonoBehaviour
 {
-    //singleton 
+    //singleton
     protected static InputManager instance;
-    public static InputManager Instance { get => instance;}
+    public static InputManager Instance
+    {
+        get => instance;
+    }
+
     //move left and right
-    [SerializeField] private float horizontalInput;
-    public float HorizontalInput { get => horizontalInput;}
+    [SerializeField]
+    private float horizontalInput;
+    public float HorizontalInput
+    {
+        get => horizontalInput;
+    }
+
     //click button on button space
-    [SerializeField] private bool onSpace;
-    public bool OnSpace { get => onSpace; }
+    [SerializeField]
+    private bool onSpace;
+    public bool OnSpace
+    {
+        get => onSpace;
+    }
 
     //double click on button space
     private float doubleSpaceClicked = 0;
     private float doubleSpaceClicktime = 0;
     private float doubleSpaceClickdelay = 0.7f;
-    [SerializeField] private bool onDoubleSpace;
-    public bool OnDoubleSpace { get => onDoubleSpace; set => onDoubleSpace = value; }
+
+    [SerializeField]
+    private bool onDoubleSpace;
+    public bool OnDoubleSpace
+    {
+        get => onDoubleSpace;
+        set => onDoubleSpace = value;
+    }
 
     //click key X
-    [SerializeField] private bool onKeyX;
-    public bool OnKeyX { get => onKeyX;}
-    
+    [SerializeField]
+    private bool onKeyX;
+    public bool OnKeyX
+    {
+        get => onKeyX;
+    }
 
     protected override void Awake()
     {
-        if(InputManager.instance != null) Debug.LogWarning("can't have 2 inputManager in obj");
+        if (InputManager.instance != null)
+            Debug.LogWarning("can't have 2 inputManager in obj");
         InputManager.instance = this;
     }
 
@@ -41,11 +64,13 @@ public class InputManager : ModelMonoBehaviour
         this.getOnKeyXDown();
     }
 
-    protected void getHorizontalInput(){
+    protected void getHorizontalInput()
+    {
         this.horizontalInput = Input.GetAxis("Horizontal");
     }
 
-    protected void getOnSpaceDown(){
+    protected void getOnSpaceDown()
+    {
         this.onSpace = Input.GetKey(KeyCode.Space) ? true : false;
     }
 
@@ -71,7 +96,10 @@ public class InputManager : ModelMonoBehaviour
                 Debug.Log("Double tap detected!");
             }
             // Nếu thời gian quá lâu hoặc nhấn quá 2 lần
-            else if (doubleSpaceClicked > 2 || Time.time - doubleSpaceClicktime > doubleSpaceClickdelay)
+            else if (
+                doubleSpaceClicked > 2
+                || Time.time - doubleSpaceClicktime > doubleSpaceClickdelay
+            )
             {
                 doubleSpaceClicked = 0; // Reset đếm
                 doubleSpaceClicktime = 0; // Reset thời gian
@@ -80,7 +108,8 @@ public class InputManager : ModelMonoBehaviour
         }
     }
 
-    protected void getOnKeyXDown(){
+    protected void getOnKeyXDown()
+    {
         this.onKeyX = Input.GetKeyDown(KeyCode.X) ? true : false;
     }
-} 
+}

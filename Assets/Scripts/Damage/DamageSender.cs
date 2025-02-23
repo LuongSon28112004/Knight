@@ -19,7 +19,6 @@ public abstract  class DamageSender : ModelMonoBehaviour
             Debug.LogWarning("None");
             return;
         } 
-
         SendDamge(damageReceiver);
     }
 

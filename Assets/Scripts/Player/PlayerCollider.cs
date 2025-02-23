@@ -24,4 +24,5 @@ public class PlayerCollider : ModelMonoBehaviour
             Debug.Log("Play is on the ground");
         }
     }
+
 }
