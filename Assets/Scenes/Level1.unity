@@ -191,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125034989}
   - component: {fileID: 125034990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,9 +474,7 @@ GameObject:
   - component: {fileID: 223131425}
   - component: {fileID: 223131424}
   - component: {fileID: 223131426}
-  - component: {fileID: 223131428}
-  - component: {fileID: 223131427}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,37 +590,6 @@ MonoBehaviour:
   enemyDamageReceiver: {fileID: 0}
   isAttackAnimationFinished: 0
   isDead: 0
---- !u!114 &223131427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223131422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f73d981b65650f4aae428a674de1b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 0
-  damageReceiver: {fileID: 0}
---- !u!114 &223131428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223131422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ce8f2c7ab12e74da38b6c62cb15b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHP: 0
-  MaxHP: 0
-  IsDead: 0
-  IsBeingHit: 0
-  enemyAnimationController: {fileID: 0}
 --- !u!1 &306694965
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,7 +4237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &815895556
 Transform:
   m_ObjectHideFlags: 0
@@ -4293,7 +4260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815895555}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b41566a658898ed44ab415eabbe0184e, type: 3}
   m_Name: 
@@ -4653,7 +4620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048357066}
   - component: {fileID: 1048357067}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SeePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10139,13 +10106,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1337961763}
   - component: {fileID: 1337961764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wizzart_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1337961763
 Transform:
   m_ObjectHideFlags: 0
@@ -10649,7 +10616,8 @@ GameObject:
   - component: {fileID: 1574214913}
   - component: {fileID: 1574214915}
   - component: {fileID: 1574214914}
-  m_Layer: 0
+  - component: {fileID: 1574214916}
+  m_Layer: 9
   m_Name: EnemyCollider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10730,6 +10698,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCheck: 0
+--- !u!114 &1574214916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574214912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ce8f2c7ab12e74da38b6c62cb15b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHP: 0
+  MaxHP: 0
+  IsDead: 0
+  IsBeingHit: 0
+  enemyAnimationController: {fileID: 0}
 --- !u!1 &1650305010
 GameObject:
   m_ObjectHideFlags: 0
@@ -11098,7 +11083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1990139871}
   - component: {fileID: 1990139872}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
