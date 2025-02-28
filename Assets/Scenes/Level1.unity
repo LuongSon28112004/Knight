@@ -3284,7 +3284,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.612193, y: 1.1095113, z: -10}
+  m_LocalPosition: {x: -7.3042116, y: 1.1191155, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4042,6 +4042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 680594541}
   - component: {fileID: 680594542}
+  - component: {fileID: 680594543}
   m_Layer: 9
   m_Name: Wizzart_C
   m_TagString: Untagged
@@ -4096,6 +4097,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &680594543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680594538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecaaa8f6e966874383066f45472c9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 10
+  knockbackDuration: 0.2
+  rb: {fileID: 0}
 --- !u!1 &704760650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4487,6 +4503,8 @@ MonoBehaviour:
   IsDead: 0
   IsBeingHit: 0
   enemyAnimationController: {fileID: 0}
+  enemyKnockBack: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1021844837
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10691,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.042608976, y: -0.44028863}
+  m_Offset: {x: 0.0337677, y: -0.44028863}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10683,7 +10701,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4440589, y: 0.5657982}
+  m_Size: {x: 0.56783295, y: 0.5657982}
   m_EdgeRadius: 0
 --- !u!114 &1574214915
 MonoBehaviour:
@@ -10715,6 +10733,8 @@ MonoBehaviour:
   IsDead: 0
   IsBeingHit: 0
   enemyAnimationController: {fileID: 0}
+  enemyKnockBack: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1650305010
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,8 @@ public class EnemyAnimationController : ModelMonoBehaviour
         enemyDamageReceiver = transform.parent.Find("EnemyCollider").GetComponent<EnemyDamageReceiver>();
     }
 
-    private void Start() {
+    private void Start() 
+    {
         this.AddAnimationEvent();
     }
 

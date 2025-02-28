@@ -12,6 +12,8 @@ public class PlayerDamageSender : DamageSender
         GetComponent<BoxCollider2D>().enabled = false;
     }
 
+    int countAttack = 0;
+
     void Update()
     {
         this.Attack();
@@ -19,11 +21,11 @@ public class PlayerDamageSender : DamageSender
 
     private void Attack()
     {
-        if(playerAnimationController.Attacked)
+        if(playerAnimationController.Attacked && countAttack == 0)
         {
             this.startAttack();
-            Invoke(nameof(EndAttack), 0.4f); 
-            playerAnimationController.resetAttacked();
+            Invoke(nameof(EndAttack), 0.7f); 
+            countAttack = 1;
         }
     }
 
@@ -44,6 +46,8 @@ public class PlayerDamageSender : DamageSender
     private void EndAttack()
     {
         GetComponent<BoxCollider2D>().enabled = false;
+        playerAnimationController.resetAttacked();
+        countAttack = 0;
     }
 
 

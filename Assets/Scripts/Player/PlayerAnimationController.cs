@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -11,10 +12,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
     private Animator anim;
     private bool isJumping = false; // Biến kiểm tra trạng thái nhảy
     private float skill = 0;
-
-    /// <summary>
-    /// attack
-    /// </summary>
     PlayerDamagerReceiver playerDamagerReceiver;
     PlayerMovement playerMovement;
 
@@ -54,21 +51,14 @@ public class PlayerAnimationController : ModelMonoBehaviour
         this.SetAnimation();
     }
 
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////////////////////
-    /// </summary>
     private void SetAnimation()
     {
         this.walking(); // Cập nhật trạng thái đi bộ
         this.jumping(); // Cập nhật trạng thái nhảy
         this.attacking();
         this.highJumping(); // Cập nhật tráng thái nhảy cao
-        // this.setStatusPlayer(); // cập nhật trạng thái của animator
     }
 
-    /// <summary>
-    /// ////////////////////////////////////////////////////////////////////////////
-    /// </summary>
     public void AddAnimationEvent()
     {
         if (anim == null || anim.runtimeAnimatorController == null)
@@ -76,8 +66,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
 
         foreach (AnimationClip clip in anim.runtimeAnimatorController.animationClips)
         {
-            // Debug.Log("" + clip.name);==============================================================
-            // Tạo sự kiện cho thời gian cuối clip
             AnimationEvent aniEventLast = new AnimationEvent
             {
                 time = 0.01f,
@@ -106,9 +94,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
         }
     }
 
-    /// <summary>
-    /// //////////////////////////////////////////////////////////////////
-    /// </summary>
     private void walking()
     {
         if (!isJumping) // Kiểm tra nếu không ở trạng thái nhảy
@@ -126,8 +111,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
         }
     }
 
-    /// /////////////////////////////////////////////////////////////////////////////
-
     private void jumping()
     {
         if (InputManager.Instance.OnSpace && PlayerCollider.Instance.IsGround)
@@ -143,10 +126,9 @@ public class PlayerAnimationController : ModelMonoBehaviour
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////
     private void attacking()
     {
-        if (InputManager.Instance.OnKeyX)
+        if (InputManager.Instance.OnKeyX && !attacked)
         {
             Debug.Log("ok x");
             anim.SetTrigger("Attack");
@@ -155,10 +137,7 @@ public class PlayerAnimationController : ModelMonoBehaviour
             if (skill == 3)
                 skill = 0;
         }
-
     }
-
-    
 
     public void CheckAttacked()
     {
@@ -167,31 +146,35 @@ public class PlayerAnimationController : ModelMonoBehaviour
 
     public void resetAttacked()
     {
-        StartCoroutine(ResetAttackedDelay());
+        this.attacked = false;
+        Debug.Log("attack reset");
+        //StartCoroutine(ResetAttackedDelay());
     }
 
     private IEnumerator ResetAttackedDelay()
     {
-        yield return new WaitForSeconds(2f); // Đợi 0.1s trước khi reset
+        yield return new WaitForSeconds(0.5f); // Đợi 0.1s trước khi reset
         this.attacked = false;
     }
 
-    // public void resetAttacked()
-    // {
-    //     this.attacked = false;
-    // }
-
-    //////////////////////////////////////////////////////////////////
+    
     public void hitFinished()
     {
         playerDamagerReceiver.ResetIsBeingHit();
     }
 
-    public void hurting()
+    public async void hurting()
     {
+        Time.timeScale = 0;
         anim.SetTrigger("Hit");
         anim.SetFloat("Hitted", 0);
+
+        await Task.Delay(500); // Đợi 2 giây (vẫn hoạt động khi Time.timeScale = 0)
+
+        Time.timeScale = 1;
+        Debug.Log("Hurting animation kết thúc, tiếp tục xử lý!");
     }
+
 
     public void deathing()
     {
@@ -201,16 +184,9 @@ public class PlayerAnimationController : ModelMonoBehaviour
         isDead = true;
     }
 
-    //////////////////////////////////////////////////////////////////
-
     private void highJumping()
     {
         //for update
     }
 
-    ///////////////////////////////////////////////////////////////////////
-
-    // private void setStatusPlayer(){
-    //      anim.SetInteger("Status", statusPlayer);  // Cập nhật trạng thái animation
-    // }
 }
