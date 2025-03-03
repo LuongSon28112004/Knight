@@ -82,7 +82,7 @@ public class EnemyAnimationController : ModelMonoBehaviour
     public void hitAnimation()
     {
         anim.SetTrigger("Hit");
-        anim.SetFloat("Hitted",0);
+        anim.SetFloat("Hitted",0f);
     }
 
     public void hitFinished()
@@ -93,7 +93,7 @@ public class EnemyAnimationController : ModelMonoBehaviour
     public void deadAnimation()
     {
         anim.SetTrigger("Hit");
-        anim.SetFloat("Hitted",1);
+        anim.SetFloat("Hitted",1f);
         anim.SetBool("IsDead",true);
         this.IsDead = true;
     }

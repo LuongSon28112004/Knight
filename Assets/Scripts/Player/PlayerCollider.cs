@@ -19,9 +19,16 @@ public class PlayerCollider : ModelMonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("ground")){
+        if (other.gameObject.CompareTag("ground"))
+        {
             isGround = true;
             Debug.Log("Play is on the ground");
+        }
+
+        if (other.gameObject.CompareTag("Apple"))
+        {
+            PlayerInventory.Instance.AddPlayerItem(new PlayerItem(other.gameObject.name, null), 1);
+            other.gameObject.SetActive(false);
         }
     }
 

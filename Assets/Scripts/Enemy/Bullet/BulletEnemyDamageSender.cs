@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDamageSender : DamageSender
+public class BulletEnemyDamageSender : DamageSender
 {
     private void Start()
     {

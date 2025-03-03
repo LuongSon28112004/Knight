@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyKnockBack : MonoBehaviour
 {
     // Lực đẩy của enemy
-    public float knockbackForce = 0.1f;
+    public float knockbackForce = 10f;
     // Thời gian giữ hiệu ứng đẩy (nếu cần)
     public float knockbackDuration = 0.1f;
     [SerializeField] private Rigidbody2D rb;

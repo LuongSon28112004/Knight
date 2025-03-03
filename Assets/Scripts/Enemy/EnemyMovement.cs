@@ -87,7 +87,7 @@ public class EnemyMovement : ModelMonoBehaviour
 
     private void changeDirection()
     {
-        if (enemyCollider.IsCheck && countFlip == 1 && !enemySeePlayer.SeePlayer)
+        if ((enemyCollider.IscheckCollMap || enemyCollider.IsFallabyss) && countFlip == 1 && !enemySeePlayer.SeePlayer)//|| enemyCollider.IsFallabyss
         {
             this.Flip();
             countFlip = 0;
@@ -108,7 +108,7 @@ public class EnemyMovement : ModelMonoBehaviour
 
     private void resetCountFlip()
     {
-        if (!enemyCollider.IsCheck)
+        if (!enemyCollider.IscheckCollMap || !enemyCollider.IsFallabyss) //|| !enemyCollider.IsFallabyss
         {
             countFlip = 1;
         }

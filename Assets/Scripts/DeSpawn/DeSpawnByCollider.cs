@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeSpawnByCollider : Despawn
 {
-    [SerializeField] private bool isDeSpawn = false;
+    [SerializeField] protected bool isDeSpawn = false;
     
     protected override void LoadComponents()
     {
@@ -18,13 +18,5 @@ public class DeSpawnByCollider : Despawn
 
     private void OnEnable() {
         isDeSpawn = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isDeSpawn = true;
-        }
     }
 }

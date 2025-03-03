@@ -39,12 +39,17 @@ public class EnemyAttack : ModelMonoBehaviour
 
    private string getBulletType()
    {
-        if(transform.parent.name == "Wizzart_C"){
+       string parentName = transform.parent.name;
+
+        if (parentName.Contains("Wizzart_C"))
+        {
             return BulletEnemySpawner.bullet_One;
         }
-        else if(transform.parent.name == "Wizzart_A"){
+        else if (parentName.Contains("Wizzart_A"))
+        {
             return BulletEnemySpawner.bullet_Two;
         }
+
         return null;
    }
 }
