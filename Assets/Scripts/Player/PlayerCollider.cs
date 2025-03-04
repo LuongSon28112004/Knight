@@ -25,10 +25,10 @@ public class PlayerCollider : ModelMonoBehaviour
             Debug.Log("Play is on the ground");
         }
 
-        if (other.gameObject.CompareTag("Apple"))
+        if (other.gameObject.name.Contains("Apple") && other.gameObject.CompareTag("Apple"))
         {
-            PlayerInventory.Instance.AddPlayerItem(new PlayerItem(other.gameObject.name, null), 1);
-            other.gameObject.SetActive(false);
+            PlayerInventory.Instance.AddPlayerItem(new PlayerItem("Apple", "none"), 1);
+            Destroy(other.gameObject);
         }
     }
 

@@ -49,6 +49,13 @@ public class InputManager : ModelMonoBehaviour
         get => onKeyX;
     }
 
+    [SerializeField]
+    private bool onKeyC;
+    public bool OnKeyC
+    {
+        get => onKeyC;
+    }
+
     protected override void Awake()
     {
         if (InputManager.instance != null)
@@ -62,6 +69,7 @@ public class InputManager : ModelMonoBehaviour
         this.getOnSpaceDown();
         this.getOnDoubleSpace();
         this.getOnKeyXDown();
+        this.getOnKeyCDown();
     }
 
     protected void getHorizontalInput()
@@ -111,5 +119,10 @@ public class InputManager : ModelMonoBehaviour
     protected void getOnKeyXDown()
     {
         this.onKeyX = Input.GetKeyDown(KeyCode.X) ? true : false;
+    }
+
+    protected void getOnKeyCDown()
+    {
+        this.onKeyC = Input.GetKeyDown(KeyCode.C) ? true : false;
     }
 }

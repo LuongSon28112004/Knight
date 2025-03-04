@@ -5,7 +5,7 @@ public class BulletPlayerSpawner : Spawner
     protected static BulletPlayerSpawner instance;
     public static BulletPlayerSpawner Instance { get => instance; }
 
-    [SerializeField] public static string apple = "apple";
+    [SerializeField] public static string apple = "Apple";
 
     protected override void Awake()
     {
