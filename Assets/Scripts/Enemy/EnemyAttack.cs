@@ -54,6 +54,7 @@ public class EnemyAttack : ModelMonoBehaviour
         }
         newBullet.gameObject.SetActive(true);
         //bulletsNumber = 0;
+        SoundFXManager.Instance.PlaySound("EnemyAttack");
         Debug.Log("Shooting");
 
         yield return new WaitForSeconds(fireRate);

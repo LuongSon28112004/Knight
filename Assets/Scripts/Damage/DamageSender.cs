@@ -24,6 +24,7 @@ public abstract  class DamageSender : ModelMonoBehaviour
 
     public void SendDamge(DamageReceiver damgeReceiver)
     {
+        Debug.Log("okokok");
         damgeReceiver.Deduct(amount);
     }
 }

@@ -151,11 +151,11 @@ public class PlayerAnimationController : ModelMonoBehaviour
         //StartCoroutine(ResetAttackedDelay());
     }
 
-    private IEnumerator ResetAttackedDelay()
-    {
-        yield return new WaitForSeconds(0.5f); // Đợi 0.1s trước khi reset
-        this.attacked = false;
-    }
+    // private IEnumerator ResetAttackedDelay()
+    // {
+    //     yield return new WaitForSeconds(0.5f); // Đợi 0.1s trước khi reset
+    //     this.attacked = false;
+    // }
 
     
     public void hitFinished()
@@ -163,15 +163,15 @@ public class PlayerAnimationController : ModelMonoBehaviour
         playerDamagerReceiver.ResetIsBeingHit();
     }
 
-    public async void hurting()
+    public void Hurting()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         anim.SetTrigger("Hit");
         anim.SetFloat("Hitted", 0);
 
-        await Task.Delay(500); // Đợi 2 giây (vẫn hoạt động khi Time.timeScale = 0)
+        //await Task.Delay(500); // Đợi 2 giây (vẫn hoạt động khi Time.timeScale = 0)
 
-        Time.timeScale = 1;
+       // Time.timeScale = 1;
         Debug.Log("Hurting animation kết thúc, tiếp tục xử lý!");
     }
 

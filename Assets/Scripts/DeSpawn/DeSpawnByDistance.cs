@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DeSpawnByDistance : Despawn
 {
-    [SerializeField] protected float disLimit = 40.0f;
-    [SerializeField] protected float distance = 0.0f;
-    [SerializeField] protected Transform mainCam;
+    [SerializeField]
+    protected float disLimit = 40.0f;
+
+    [SerializeField]
+    protected float distance = 0.0f;
+
+    [SerializeField]
+    protected Transform mainCam;
 
     protected override void LoadComponents()
     {
@@ -14,15 +19,19 @@ public class DeSpawnByDistance : Despawn
         this.LoadCamera();
     }
 
-    protected virtual void LoadCamera(){
-        if(this.mainCam != null) return;
-            this.mainCam = Transform.FindObjectOfType<Camera>().transform;
-            Debug.Log(transform.parent.name + ": Load Camera " + gameObject);
-        }
+    protected virtual void LoadCamera()
+    {
+        if (this.mainCam != null)
+            return;
+        this.mainCam = Transform.FindObjectOfType<Camera>().transform;
+        Debug.Log(transform.parent.name + ": Load Camera " + gameObject);
+    }
 
-    protected override bool CanDespawn(){
+    protected override bool CanDespawn()
+    {
         this.distance = Vector3.Distance(transform.position, this.mainCam.transform.position);
-        if(distance > disLimit)return true;
-            return false;
+        if (distance > disLimit)
+            return true;
+        return false;
     }
 }

@@ -1,37 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDamageSender : DamageSender
 {
-    [SerializeField] PlayerAnimationController playerAnimationController;
-    private void Start()
-    {
-        playerAnimationController = transform.parent.Find("Model").GetComponent<PlayerAnimationController>();
-        InitialAmountDamage();
-        GetComponent<BoxCollider2D>().enabled = false;
-    }
+    [SerializeField]
+    PlayerAnimationController playerAnimationController;
+
+    [SerializeField]
+    Vector3 left;
+
+    [SerializeField]
+    Vector3 right;
 
     int countAttack = 0;
+
+    private void Start()
+    {
+        playerAnimationController = transform
+            .parent.Find("Model")
+            .GetComponent<PlayerAnimationController>();
+        GetComponent<BoxCollider2D>().enabled = false;
+        this.InitialAmountDamage();
+        this.initValue();
+    }
 
     void Update()
     {
         this.Attack();
+        this.changeDirection();
+    }
+
+    private void initValue()
+    {
+        this.left = new Vector3(-4f, transform.localPosition.y, transform.localPosition.z);
+        this.right = new Vector3(2f, transform.localPosition.y, transform.localPosition.z);
+    }
+
+    private void changeDirection()
+    {
+        if (transform.parent.Find("Model").GetComponent<SpriteRenderer>().flipX == true)
+        {
+            transform.localPosition = left;
+        }
+        else
+            transform.localPosition = right;
     }
 
     private void Attack()
     {
-        if(playerAnimationController.Attacked && countAttack == 0)
+        if (playerAnimationController.Attacked && countAttack == 0)
         {
+            Debug.Log("attacked");
+            //this.updatePosition();
             this.startAttack();
-            Invoke(nameof(EndAttack), 0.7f); 
+            Invoke(nameof(EndAttack), 0.7f);
             countAttack = 1;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(playerAnimationController.Attacked)
+        if (playerAnimationController.Attacked && other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("player send dame");
             this.SendDamage(other.transform);
@@ -50,10 +81,8 @@ public class PlayerDamageSender : DamageSender
         countAttack = 0;
     }
 
-
     protected override void InitialAmountDamage()
     {
-       this.amount = 1;
+        this.amount = 1;
     }
 }
-

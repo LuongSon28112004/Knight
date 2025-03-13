@@ -11,7 +11,6 @@ public class EnemyDamageSender : DamageSender
 
    void OnCollisionEnter2D(Collision2D other)
    {
-      Debug.Log("ok enemy");
       this.SendDamage(other.transform);
    }
 

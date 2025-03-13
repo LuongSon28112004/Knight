@@ -7,7 +7,7 @@ public class PlayerMovement : ModelMonoBehaviour
     [SerializeField] private float jumpSpeed = 6f;
     [SerializeField] private float moveSpeed = 3f;
     private float INCREASE_SPEED = 0.01f;
-    private const float MAX_SPEED = 6f;
+    private const float MAX_SPEED = 5f;
     [SerializeField] private bool doubleJump = false;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -68,10 +68,11 @@ public class PlayerMovement : ModelMonoBehaviour
     protected virtual void jump(bool isGround)
     {
         // Kiểm tra xem người chơi có đang đứng trên mặt đất
-        if(InputManager.Instance.OnSpace && PlayerCollider.Instance.IsGround){
+        if (InputManager.Instance.OnSpace && PlayerCollider.Instance.IsGround)
+        {
             Debug.Log("jump");
-           m_rb.AddForce(Vector2.up * jumpSpeed ,ForceMode2D.Impulse );
-           PlayerCollider.Instance.IsGround = false;
+            m_rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            PlayerCollider.Instance.IsGround = false;
         }
     }
 

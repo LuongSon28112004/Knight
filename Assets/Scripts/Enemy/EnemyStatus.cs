@@ -6,5 +6,6 @@ public enum EnemyStatus
 {
     Walk,
     Attack,
-    Hit
+    Hit,
+    Dead
 }

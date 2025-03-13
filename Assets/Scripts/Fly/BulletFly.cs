@@ -12,13 +12,19 @@ public class BulletFly : ModelMonoBehaviour
 
 
    //function update other frame 
-   void Update()
+   protected virtual void Update()
    {
       this.move();
    }
 
+   protected virtual void Start()
+   {
+      //for start
+   }
+
+
    //hàm giúp di chuyển bullet 
-   private void move()
+   protected virtual void move()
    {
       transform.parent.Translate(this.direction * movespeed * Time.deltaTime);
    }

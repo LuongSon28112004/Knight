@@ -8,14 +8,14 @@ public class PlayerDamagerReceiver : DamageReceiver
     private void Start()
     {
         playerAnimationController = transform.parent.Find("Model").GetComponent<PlayerAnimationController>();
-        this.CurrentHP = 7;
-        this.MaxHP = CurrentHP;
+        this.currentHP = 5;
+        this.maxHP = currentHP;
         this.IsDead = false;
     }
 
     protected override void HitHandle()
     {
-        playerAnimationController.hurting();
+        playerAnimationController.Hurting();
     }
 
     protected override void DeadHandle()

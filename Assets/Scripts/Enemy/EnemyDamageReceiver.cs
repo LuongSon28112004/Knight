@@ -9,8 +9,8 @@ public class EnemyDamageReceiver : DamageReceiver
     [SerializeField] GameObject Player;
      private void Start()
     {
-        this.CurrentHP = 5;
-        this.MaxHP = this.CurrentHP;
+        this.currentHP = 2;
+        this.maxHP = this.currentHP;
         this.IsDead = false;
         enemyAnimationController = transform.parent.Find("Model").GetComponent<EnemyAnimationController>();
         enemyKnockBack = transform.parent.GetComponent<EnemyKnockBack>();
@@ -19,6 +19,7 @@ public class EnemyDamageReceiver : DamageReceiver
 
     protected override void HitHandle()
     {
+        Debug.Log("enemy hit");
         enemyAnimationController.hitAnimation();
         enemyKnockBack.ApplyKnockback(Player.transform);
     }

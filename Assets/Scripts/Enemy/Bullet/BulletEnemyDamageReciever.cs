@@ -6,8 +6,8 @@ public class BulletEnemyDamageReciever : DamageReceiver
 {
      private void Start()
     {
-        this.CurrentHP = 5;
-        this.MaxHP = this.CurrentHP;
+        this.currentHP = 5;
+        this.maxHP = this.CurrentHP;
         this.IsDead = false;
     }
 

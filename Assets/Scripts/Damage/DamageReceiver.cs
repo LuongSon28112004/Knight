@@ -4,22 +4,25 @@ using UnityEngine;
 
 public abstract class DamageReceiver  : ModelMonoBehaviour
 {
-    [SerializeField] protected int CurrentHP ;
-    [SerializeField] protected int MaxHP;
+    [SerializeField] protected int currentHP;
+    [SerializeField] protected int maxHP;
     [SerializeField] protected bool IsDead;
 
     // Player is being hit
     [SerializeField] protected bool IsBeingHit ;
 
+    public int CurrentHP { get => currentHP; }
+    public int MaxHP { get => maxHP; }
+
     public bool Add(int amount)
     {
         if (IsDead) return false;
 
-        CurrentHP += amount;
+        currentHP += amount;
 
-        if (CurrentHP > MaxHP)
+        if (currentHP > maxHP)
         {
-            CurrentHP = MaxHP;
+            currentHP = maxHP;
             return false;
         }
 
@@ -28,15 +31,16 @@ public abstract class DamageReceiver  : ModelMonoBehaviour
 
     public void Deduct(int amount)
     {
-        if (IsDead || IsBeingHit) return;
+        Debug.Log("yes yes yes");
+        if (IsDead || IsBeingHit ) return;
 
-        CurrentHP -= amount;
+        currentHP -= amount;
 
         Debug.Log("damage Deduct from " + transform.parent.name);
 
-        if (CurrentHP <= 0)
+        if (currentHP <= 0)
         {
-            CurrentHP = 0;
+            currentHP = 0;
             IsDead = true;
             DeadHandle();
             return;

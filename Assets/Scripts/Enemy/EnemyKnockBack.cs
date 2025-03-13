@@ -20,6 +20,7 @@ public class EnemyKnockBack : MonoBehaviour
     {
         if(rb == null) return;
         float direction = Mathf.Sign(playerTransform.localScale.x);
+        Debug.Log(direction);
         Vector2 knockbackDirection = new Vector2(direction, 0); // Đẩy ngang
 
         // Áp dụng lực đẩy
