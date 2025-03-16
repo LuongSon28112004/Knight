@@ -18,8 +18,8 @@ public abstract class SoundManager : MonoBehaviour
     protected void Awake()
     {
         LoadComponents();
-        // LoadAudioClips();
-        // LoadAudioMixer();
+        LoadAudioClips();
+        LoadAudioMixer();
     }
 
     private void LoadComponents()
@@ -27,27 +27,27 @@ public abstract class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // private void LoadAudioMixer()
-    // {
-    //     // Load one audio mixer
-    //     AsyncOperationHandle<AudioMixer> handle = Addressables.LoadAssetAsync<AudioMixer>(
-    //         "MixerController"
-    //     );
+    private void LoadAudioMixer()
+    {
+        // Load one audio mixer
+        AsyncOperationHandle<AudioMixer> handle = Addressables.LoadAssetAsync<AudioMixer>(
+            "MixerController"
+        );
 
-    //     handle.Completed += Load_Completed;
-    // }
+        handle.Completed += Load_Completed;
+    }
 
-    // private void Load_Completed(AsyncOperationHandle<AudioMixer> handle)
-    // {
-    //     if (handle.Status != AsyncOperationStatus.Succeeded)
-    //     {
-    //         Debug.LogWarning("Audio mixer could not loaded!");
-    //         return;
-    //     }
+    private void Load_Completed(AsyncOperationHandle<AudioMixer> handle)
+    {
+        if (handle.Status != AsyncOperationStatus.Succeeded)
+        {
+            Debug.LogWarning("Audio mixer could not loaded!");
+            return;
+        }
 
-    //     audioMixer = handle.Result;
-    //     InitialVolume();
-    // }
+        audioMixer = handle.Result;
+        InitialVolume();
+    }
 
     public void PlaySound(string name)
     {
@@ -66,8 +66,8 @@ public abstract class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
-    //protected abstract void LoadAudioClips();
+    protected abstract void LoadAudioClips();
 
-    // Set initial volume from file
-    //protected abstract void InitialVolume();
+    //Set initial volume from file
+    protected abstract void InitialVolume();
 }
