@@ -20,7 +20,6 @@ public abstract class BaseSlider : ModelMonoBehaviour
 
     protected void AddOnValueChangeEvent()
     {
-        slider.onValueChanged.RemoveAllListeners(); 
         slider.onValueChanged.AddListener((value) => OnValueChanged(value));
     }
 

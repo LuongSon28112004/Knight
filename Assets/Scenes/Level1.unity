@@ -2134,6 +2134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423832272}
   - component: {fileID: 423832275}
+  - component: {fileID: 423832276}
   - component: {fileID: 423832274}
   - component: {fileID: 423832273}
   m_Layer: 5
@@ -2245,6 +2246,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423832271}
   m_CullTransparentMesh: 1
+--- !u!114 &423832276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423832271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f8e4f488a530e4093b7e8c755ff7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &427872556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,7 +2768,7 @@ RectTransform:
   m_Father: {fileID: 1443876896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2931,6 +2945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600360614}
   - component: {fileID: 600360617}
+  - component: {fileID: 600360618}
   - component: {fileID: 600360616}
   - component: {fileID: 600360615}
   m_Layer: 5
@@ -3042,6 +3057,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600360613}
   m_CullTransparentMesh: 1
+--- !u!114 &600360618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600360613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9cc08869b462a4fa43a161c2507349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &671652204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,7 +3326,7 @@ RectTransform:
   m_Father: {fileID: 1814617782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13935,7 +13963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1267691391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14791,7 +14819,7 @@ RectTransform:
   m_Father: {fileID: 671652205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15031,6 +15059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369625300}
+  - component: {fileID: 1369625304}
   - component: {fileID: 1369625303}
   - component: {fileID: 1369625302}
   - component: {fileID: 1369625301}
@@ -15143,6 +15172,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369625299}
   m_CullTransparentMesh: 1
+--- !u!114 &1369625304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369625299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf8ff56c5ceaf443b1d06e34fcf45ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
+  PauseGameobject: {fileID: 1267691390}
 --- !u!1 &1370984314
 GameObject:
   m_ObjectHideFlags: 0
@@ -17793,7 +17836,7 @@ RectTransform:
   m_Father: {fileID: 1956325083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19960,6 +20003,7 @@ GameObject:
   - component: {fileID: 2075030884}
   - component: {fileID: 2075030887}
   - component: {fileID: 2075030886}
+  - component: {fileID: 2075030888}
   - component: {fileID: 2075030885}
   m_Layer: 5
   m_Name: btnPause
@@ -20070,6 +20114,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075030883}
   m_CullTransparentMesh: 1
+--- !u!114 &2075030888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075030883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dab4ab8b8103849bdac107f64ac96e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
+  pauseGameobject: {fileID: 1267691390}
 --- !u!1 &2077509314
 GameObject:
   m_ObjectHideFlags: 0
