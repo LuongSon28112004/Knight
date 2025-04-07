@@ -28,19 +28,6 @@ public class InputManager : ModelMonoBehaviour
         get => onSpace;
     }
 
-    //double click on button space
-    private float doubleSpaceClicked = 0;
-    private float doubleSpaceClicktime = 0;
-    private float doubleSpaceClickdelay = 0.7f;
-
-    [SerializeField]
-    private bool onDoubleSpace;
-    public bool OnDoubleSpace
-    {
-        get => onDoubleSpace;
-        set => onDoubleSpace = value;
-    }
-
     //click key X
     [SerializeField]
     private bool onKeyX;
@@ -67,14 +54,13 @@ public class InputManager : ModelMonoBehaviour
     {
         this.getHorizontalInput();
         this.getOnSpaceDown();
-        this.getOnDoubleSpace();
         this.getOnKeyXDown();
         this.getOnKeyCDown();
     }
 
     protected void getHorizontalInput()
     {
-        this.horizontalInput = Input.GetAxis("Horizontal");
+        this.horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
     protected void getOnSpaceDown()
@@ -82,39 +68,6 @@ public class InputManager : ModelMonoBehaviour
         this.onSpace = Input.GetKey(KeyCode.Space) ? true : false;
     }
 
-    protected void getOnDoubleSpace()
-    {
-        // Chỉ thực hiện khi phím Space được nhấn xuống
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            doubleSpaceClicked++; // Tăng biến đếm lần nhấn
-
-            // Nếu lần nhấn đầu tiên
-            if (doubleSpaceClicked == 1)
-            {
-                doubleSpaceClicktime = Time.time; // Lưu lại thời gian nhấn đầu tiên
-            }
-
-            // Nếu lần nhấn thứ hai và trong khoảng thời gian hợp lệ
-            if (doubleSpaceClicked > 1 && Time.time - doubleSpaceClicktime < doubleSpaceClickdelay)
-            {
-                doubleSpaceClicked = 0; // Reset đếm
-                doubleSpaceClicktime = 0; // Reset thời gian
-                this.onDoubleSpace = true; // Đặt cờ nhận diện double-tap
-                Debug.Log("Double tap detected!");
-            }
-            // Nếu thời gian quá lâu hoặc nhấn quá 2 lần
-            else if (
-                doubleSpaceClicked > 2
-                || Time.time - doubleSpaceClicktime > doubleSpaceClickdelay
-            )
-            {
-                doubleSpaceClicked = 0; // Reset đếm
-                doubleSpaceClicktime = 0; // Reset thời gian
-                this.onDoubleSpace = false; // Reset cờ double-tap
-            }
-        }
-    }
 
     protected void getOnKeyXDown()
     {

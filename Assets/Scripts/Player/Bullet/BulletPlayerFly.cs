@@ -12,11 +12,11 @@ public class BulletPlayerFly : BulletFly
     {
         base.Start();
         Player = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>();
+        this.ChangeDirection();
     }
     protected override void Update()
     {
         base.Update();
-        this.ChangeDirection();
     }
 
 

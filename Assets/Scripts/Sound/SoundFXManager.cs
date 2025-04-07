@@ -8,7 +8,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEditor;
 #endif
 
-
 public class SoundFXManager : SoundManager
 {
     public static SoundFXManager Instance { get; private set; }
@@ -58,7 +57,12 @@ public class SoundFXManager : SoundManager
 
     protected override void InitialVolume()
     {
-        // float value = PlayerPrefs.GetFloat(AudioString.SoundString.SOUND_VOLUME);
-        //audioMixer.SetFloat(AudioString.SoundString.SOUND_VOLUME, Mathf.Log10(value) * 20);
+        float value = PlayerPrefs.GetFloat(StaticStringUI.AudioString.SFXString.SFX_VOLUME, 1);
+        float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, value);
+        if(PlayerPrefs.GetInt(StaticStringUI.AudioString.SFXString.TOGGLE_SFX, 1) == 0)
+        {
+            dB = StaticConst.MIN_DB;
+        }
+        audioMixer.SetFloat(StaticStringUI.AudioString.SFXString.SFX_VOLUME,dB);
     }
 }

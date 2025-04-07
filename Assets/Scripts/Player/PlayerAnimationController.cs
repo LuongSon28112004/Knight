@@ -130,7 +130,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
     {
         if (InputManager.Instance.OnKeyX && !attacked)
         {
-            Debug.Log("ok x");
             anim.SetTrigger("Attack");
             anim.SetFloat("Skill", skill);
             skill++;
@@ -148,21 +147,20 @@ public class PlayerAnimationController : ModelMonoBehaviour
     {
         this.attacked = false;
         Debug.Log("attack reset");
-        //StartCoroutine(ResetAttackedDelay());
     }
 
-    // private IEnumerator ResetAttackedDelay()
-    // {
-    //     yield return new WaitForSeconds(0.5f); // Đợi 0.1s trước khi reset
-    //     this.attacked = false;
-    // }
 
-    
+    /// <summary>
+    /// Đánh dấu là nhân vật không còn bị thương
+    /// </summary>
     public void hitFinished()
     {
         playerDamagerReceiver.ResetIsBeingHit();
     }
 
+    /// <summary>
+    /// Đánh dấu là nhân vật đang bị thương
+    /// </summary>
     public void Hurting()
     {
         //Time.timeScale = 0;
@@ -171,11 +169,14 @@ public class PlayerAnimationController : ModelMonoBehaviour
 
         //await Task.Delay(500); // Đợi 2 giây (vẫn hoạt động khi Time.timeScale = 0)
 
-       // Time.timeScale = 1;
+        // Time.timeScale = 1;
         Debug.Log("Hurting animation kết thúc, tiếp tục xử lý!");
     }
 
 
+    /// <summary>
+    /// Đánh dấu là nhân vật đã chết
+    /// </summary>
     public void deathing()
     {
         anim.SetTrigger("Hit");

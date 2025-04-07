@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class EnemyAttack : ModelMonoBehaviour
 {
-    //[SerializeField] private int bulletsNumber = 1;
-
-    private float fireRate = 2f;
-    private bool canShoot = true;
+    private float fireRate = 2.0f;
+    [SerializeField] private bool canShoot = true;
 
     [SerializeField]
     EnemyAnimationController enemyAnimationController;
@@ -28,38 +26,55 @@ public class EnemyAttack : ModelMonoBehaviour
 
     protected virtual void Shooting()
     {
-        if (enemyAnimationController.IsAttackAnimationFinished && canShoot) //&& bulletsNumber == 1
+        try
         {
-            StartCoroutine(ShootWithDelay());
-        }
+            if (enemyAnimationController != null &&
+                enemyAnimationController.IsAttackAnimationFinished && canShoot)
+            {
+                Debug.Log("Can shoot");
+                canShoot = false;
 
-        // if (!enemyAnimationController.IsAttackAnimationFinished)
-        // {
-        //     bulletsNumber = 1;
-        // }
+                string bulletType = this.getBulletType();
+
+                Transform newBullet = BulletEnemySpawner.Instance.Spawn(
+                    bulletType,
+                    transform.parent.position,
+                    transform.parent.rotation
+                );
+
+                if (newBullet == null)
+                {
+                    return;
+                }
+
+                newBullet.gameObject.SetActive(true);
+
+                try
+                {
+                    SoundFXManager.Instance.PlaySound("EnemyAttack");
+                }
+                catch (Exception soundEx)
+                {
+                    Debug.LogWarning("Không thể phát âm thanh EnemyAttack: " + soundEx.Message);
+                }
+
+                Debug.Log("Shooting");
+
+                StartCoroutine(this.ResetCanShootCoroutine(fireRate));
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Lỗi trong quá trình bắn đạn Enemy: " + e.Message);
+        }
     }
 
-    private IEnumerator ShootWithDelay()
+    private IEnumerator ResetCanShootCoroutine(float time)
     {
-        canShoot = false;
-        string bulletType = this.getBulletType();
-        Transform newBullet = BulletEnemySpawner.Instance.Spawn(
-            bulletType,
-            transform.parent.position,
-            transform.parent.rotation
-        );
-        if (newBullet == null)
-        {
-            yield break;
-        }
-        newBullet.gameObject.SetActive(true);
-        //bulletsNumber = 0;
-        SoundFXManager.Instance.PlaySound("EnemyAttack");
-        Debug.Log("Shooting");
-
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(time);
         canShoot = true;
     }
+
 
     private string getBulletType()
     {

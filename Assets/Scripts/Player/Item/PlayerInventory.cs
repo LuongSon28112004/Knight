@@ -9,7 +9,6 @@ public class PlayerInventory : ModelMonoBehaviour
     {
         get => instance;
     }
-
     private Dictionary<PlayerItem, int> playerItems = new Dictionary<PlayerItem, int>(); // Kho đồ
     public Dictionary<PlayerItem, int> PlayerItems { get => playerItems; }
 
@@ -27,7 +26,7 @@ public class PlayerInventory : ModelMonoBehaviour
 
     void Update()
     {
-        Debug.Log("tong=" + playerItems.Count);
+        // Debug.Log("tong=" + playerItems.Count);
     }
 
     // Thêm vật phẩm vào kho

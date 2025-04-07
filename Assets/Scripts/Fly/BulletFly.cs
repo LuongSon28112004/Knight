@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class BulletFly : ModelMonoBehaviour
 {
-   //properties of class 
-   [SerializeField] protected float movespeed = 5;
-   [SerializeField] protected Vector3 direction = Vector3.right;
+    //properties of class
+    [SerializeField]
+    protected float movespeed = 5;
 
-   //khởi động lần đầu tiền khi game chạy 
+    [SerializeField]
+    protected Vector3 direction = Vector3.right;
 
+    protected virtual void Update()
+    {
+        this.move();
+    }
 
-   //function update other frame 
-   protected virtual void Update()
-   {
-      this.move();
-   }
+    protected virtual void Start()
+    {
+        //for start
+    }
 
-   protected virtual void Start()
-   {
-      //for start
-   }
-
-
-   //hàm giúp di chuyển bullet 
-   protected virtual void move()
-   {
-      transform.parent.Translate(this.direction * movespeed * Time.deltaTime);
-   }
+    //hàm giúp di chuyển bullet
+    protected virtual void move()
+    {
+        transform.parent.Translate(this.direction * movespeed * Time.deltaTime);
+    }
 }

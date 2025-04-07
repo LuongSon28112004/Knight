@@ -11,7 +11,7 @@ public abstract class DamageReceiver  : ModelMonoBehaviour
     // Player is being hit
     [SerializeField] protected bool IsBeingHit ;
 
-    public int CurrentHP { get => currentHP; }
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
     public int MaxHP { get => maxHP; }
 
     public bool Add(int amount)
@@ -31,7 +31,6 @@ public abstract class DamageReceiver  : ModelMonoBehaviour
 
     public void Deduct(int amount)
     {
-        Debug.Log("yes yes yes");
         if (IsDead || IsBeingHit ) return;
 
         currentHP -= amount;

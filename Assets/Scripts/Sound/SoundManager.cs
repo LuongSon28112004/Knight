@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -51,23 +52,30 @@ public abstract class SoundManager : MonoBehaviour
 
     public void PlaySound(string name)
     {
-        AudioClip clip = clips.Find(clip => clip.name == name);
-
-        if (clip == null)
+        try
         {
-            Debug.LogWarning($"Sound {name} not found!");
-            return;
+            AudioClip clip = clips.Find(clip => clip.name == name);
+
+            if (clip == null)
+            {
+                Debug.LogWarning($"Sound {name} not found!");
+                return;
+            }
+
+            if (audioSource.isPlaying && audioSource.clip == clip)
+                return;
+
+            audioSource.clip = clip;
+            audioSource.Play();
         }
-
-        if (audioSource.isPlaying && audioSource.clip == clip)
-            return;
-
-        audioSource.clip = clip;
-        audioSource.Play();
+        catch (Exception e)
+        {
+            Debug.LogWarning("Loi khi phat am thanh" + e.Message);
+            throw;
+        }
     }
 
     protected abstract void LoadAudioClips();
 
-    //Set initial volume from file
     protected abstract void InitialVolume();
 }

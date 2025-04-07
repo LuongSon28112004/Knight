@@ -1,9 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundFXSlider : BaseVolumeSlider
 {
-    private const float minDB = -80.0f;
-    private const float maxDB = 10.0f;
 
     private void Start()
     {
@@ -20,10 +19,9 @@ public class SoundFXSlider : BaseVolumeSlider
     {
         if (IsAudioMixerLoaded())
         {
-            float dB = Mathf.Lerp(minDB, maxDB, value);
+            float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, value);
             Debug.Log("Music volume: " + dB);
             audioMixer.SetFloat(StaticStringUI.AudioString.SFXString.SFX_VOLUME, dB);
-
             // Save music volume
             PlayerPrefs.SetFloat(StaticStringUI.AudioString.SFXString.SFX_VOLUME, value);
         }
@@ -33,7 +31,11 @@ public class SoundFXSlider : BaseVolumeSlider
     {
         if (IsAudioMixerLoaded())
         {
-            float dB = Mathf.Lerp(minDB, maxDB, slider.value);
+            float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, slider.value);
+            if(PlayerPrefs.GetInt(StaticStringUI.AudioString.SFXString.TOGGLE_SFX, 1) == 0)
+            {
+                dB = StaticConst.MIN_DB;
+            }
             audioMixer.SetFloat(StaticStringUI.AudioString.SFXString.SFX_VOLUME, dB);
         }
     }

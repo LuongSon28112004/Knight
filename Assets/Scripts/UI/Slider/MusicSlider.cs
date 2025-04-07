@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class MusicSlider : BaseVolumeSlider
 {
-    private const float minDB = -80.0f;
-    private const float maxDB = 10.0f;
-
     private void Start()
     {
         slider.value = PlayerPrefs.GetFloat(
@@ -23,8 +20,7 @@ public class MusicSlider : BaseVolumeSlider
     {
         if (IsAudioMixerLoaded())
         {
-            float dB = Mathf.Lerp(minDB, maxDB, value);
-            Debug.Log("Music volume: " + dB);
+            float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, value);//ham noi suy tuyen tinh
             audioMixer.SetFloat(StaticStringUI.AudioString.MusicString.MUSIC_VOLUME, dB);
 
             // Save music volume
@@ -36,7 +32,11 @@ public class MusicSlider : BaseVolumeSlider
     {
         if (IsAudioMixerLoaded())
         {
-            float dB = Mathf.Lerp(minDB, maxDB, slider.value);
+            float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, slider.value);
+            if(PlayerPrefs.GetInt(StaticStringUI.AudioString.MusicString.TOGGLE_MUSIC, 1) == 0)
+            {
+                dB = StaticConst.MIN_DB;
+            }
             audioMixer.SetFloat(StaticStringUI.AudioString.MusicString.MUSIC_VOLUME, dB);
         }
     }

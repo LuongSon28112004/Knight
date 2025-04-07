@@ -52,7 +52,12 @@ public class SoundBackGroundMusicManager : SoundManager
 
     protected override void InitialVolume()
     {
-        // float value = PlayerPrefs.GetFloat(AudioString.MusicString.MUSIC_VOLUME);
-        //audioMixer.SetFloat(AudioString.MusicString.MUSIC_VOLUME, Mathf.Log10(value) * 20);
+        float value = PlayerPrefs.GetFloat(StaticStringUI.AudioString.MusicString.MUSIC_VOLUME, 1);
+        float dB = Mathf.Lerp(StaticConst.MIN_DB, StaticConst.MAX_DB, value);
+        if(PlayerPrefs.GetInt(StaticStringUI.AudioString.MusicString.TOGGLE_MUSIC, 1) == 0)
+        {
+            dB = StaticConst.MIN_DB;
+        }
+        audioMixer.SetFloat(StaticStringUI.AudioString.MusicString.MUSIC_VOLUME, dB);
     }
 }

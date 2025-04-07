@@ -120,7 +120,6 @@ public class EnemyAnimationController : ModelMonoBehaviour
 
     public void hitFinished()
     {
-        Debug.Log("reset ok doi");
         this.isHitting = false;
         anim.SetBool("IsHitting", false);
         enemyDamageReceiver.ResetIsBeingHit();

@@ -50,7 +50,7 @@ public class Spawner : ModelMonoBehaviour
         newPrefab.position = spawnPos;
         //newPrefab.rotation = rotation;
         newPrefab.parent = this.Holder;
-        return newPrefab; 
+        return newPrefab;
     }
 
     protected virtual Transform getObjectFromPool(Transform Prefab){
