@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class EnemyDamageReceiver : DamageReceiver
 {
-    [SerializeField] EnemyAnimationController enemyAnimationController;
-    [SerializeField] EnemyKnockBack enemyKnockBack;
-    [SerializeField] GameObject Player;
-     private void Start()
+    [SerializeField]
+    EnemyAnimationController enemyAnimationController;
+
+    [SerializeField]
+    EnemyKnockBack enemyKnockBack;
+
+    [SerializeField]
+    GameObject Player;
+
+    private void Start()
     {
         this.currentHP = 2;
         this.maxHP = this.currentHP;
         this.IsDead = false;
-        enemyAnimationController = transform.parent.Find("Model").GetComponent<EnemyAnimationController>();
+        enemyAnimationController = transform
+            .parent.Find("Model")
+            .GetComponent<EnemyAnimationController>();
         enemyKnockBack = transform.parent.GetComponent<EnemyKnockBack>();
         Player = GameObject.Find("Player");
     }
@@ -27,6 +36,7 @@ public class EnemyDamageReceiver : DamageReceiver
     protected override void DeadHandle()
     {
         enemyAnimationController.deadAnimation();
+        RandomItem.Instance.SpawnItem(transform.parent.position, transform.parent.rotation);
+        Destroy(transform.parent.gameObject);
     }
-
 }

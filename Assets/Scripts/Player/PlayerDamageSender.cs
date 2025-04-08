@@ -9,6 +9,9 @@ public class PlayerDamageSender : DamageSender
     PlayerAnimationController playerAnimationController;
 
     [SerializeField]
+    ParticleSystem chestParticleSystem;
+
+    [SerializeField]
     Vector3 left;
 
     [SerializeField]
@@ -22,6 +25,7 @@ public class PlayerDamageSender : DamageSender
             .parent.Find("Model")
             .GetComponent<PlayerAnimationController>();
         GetComponent<BoxCollider2D>().enabled = false;
+        chestParticleSystem = GameObject.FindGameObjectWithTag("ParticleChest").GetComponent<ParticleSystem>();
         this.InitialAmountDamage();
         this.initValue();
     }
@@ -59,7 +63,11 @@ public class PlayerDamageSender : DamageSender
             countAttack = 1;
         }
     }
-
+    
+    /// <summary>
+    /// Send damage to enemy
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (playerAnimationController.Attacked && other.gameObject.CompareTag("Enemy"))
@@ -67,8 +75,20 @@ public class PlayerDamageSender : DamageSender
             Debug.Log("player send dame");
             this.SendDamage(other.transform);
         }
+
+        //tao particle va destroy object chest
+        if (playerAnimationController.Attacked && other.gameObject.CompareTag("Chest"))
+        {
+            chestParticleSystem.transform.position = other.transform.position;
+            chestParticleSystem.transform.rotation = other.transform.rotation;
+            chestParticleSystem.Play();
+            Destroy(other.gameObject);
+        }
     }
 
+    /// <summary>
+    /// Send damage to enemy
+    /// </summary>
     private void startAttack()
     {
         GetComponent<BoxCollider2D>().enabled = true;

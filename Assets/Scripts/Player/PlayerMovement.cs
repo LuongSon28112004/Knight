@@ -50,6 +50,9 @@ public class PlayerMovement : ModelMonoBehaviour
         this.resetJumpCount();
     }
 
+    /// <summary>
+    /// Tăng tốc độ di chuyển theo thời gian
+    /// </summary>
     private void IncreaseSpeedOverTime()
     {
         if (InputManager.Instance.HorizontalInput != 0)
@@ -64,6 +67,10 @@ public class PlayerMovement : ModelMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Di chuyển nhân vật  
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
     protected virtual void moving()
     {
         if (playerAnimationController.IsDead)
@@ -73,6 +80,10 @@ public class PlayerMovement : ModelMonoBehaviour
         this.flipDirection(x);
     }
 
+    /// <summary>
+    /// Lật hướng nhân vật 
+    /// </summary>
+    /// <param name="value">Giá trị đầu vào</param>
     protected void flipDirection(float value)
     {
         if (value < 0)
@@ -85,11 +96,22 @@ public class PlayerMovement : ModelMonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Nhảy nhân vật
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
     protected virtual void jump()
     {
         jump(PlayerCollider.Instance.IsGround);
     }
 
+    /// <summary>
+    /// Nhảy nhân vật
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
     protected virtual void jump(bool isGround)
     {
         // Kiểm tra xem người chơi có đang đứng trên mặt đất
@@ -103,6 +125,11 @@ public class PlayerMovement : ModelMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Nhảy cao hơn
+    /// </summary>  
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
     protected virtual void highJump()
     {
         if (jumpCount == 1 && !PlayerCollider.Instance.IsGround)
@@ -121,13 +148,19 @@ public class PlayerMovement : ModelMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Đặt lại số lần nhảy 
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
+    /// <param name="hasReleasedJump">Kiểm tra xem người chơi đã nhả phím nhảy hay chưa</param>
     private void resetJumpCount()
     {
         if (PlayerCollider.Instance.IsGround)
         {
             jumpCount = 0;
             hasReleasedJump = false;
-            
+
         }
     }
 }
