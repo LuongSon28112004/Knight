@@ -2,18 +2,8 @@ using UnityEngine;
 
 public class CloundMove : MonoBehaviour
 {
-    [SerializeField] private GameObject clouds;
     private float MaxX = 20.0f;
     private float MinX = -10.0f;
-    void Start()
-    {
-        clouds = GameObject.FindGameObjectWithTag("Clouds");
-        if (clouds == null)
-        {
-            Debug.LogError("Clouds GameObject not found in the scene.");
-            return;
-        }
-    }
 
     // Update is called once per frame
     void Update()

@@ -13,6 +13,7 @@ public class PlayerItem : MonoBehaviour
 
     public string Name { get => name; set => name = value; }
     public string SpriteIcon { get => spriteIcon; set => spriteIcon = value; }
+    public string Name1 { get => name;}
 
     // Định nghĩa Equals và GetHashCode để Dictionary hoạt động chính xác
     public override bool Equals(object obj)
