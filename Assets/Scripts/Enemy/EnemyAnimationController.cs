@@ -7,8 +7,7 @@ public class EnemyAnimationController : ModelMonoBehaviour
 {
     [SerializeField]
     private Animator anim;
-
-    //private int statusEnemy;
+    
     //animation attack
     [SerializeField]
     private EnemySeePlayer enemySeePlayer;
@@ -116,6 +115,7 @@ public class EnemyAnimationController : ModelMonoBehaviour
         anim.SetBool("IsMoving", false);
         anim.SetFloat("Hitted", 1f);
         this.isHitting = true;
+        SoundFXManager.Instance.PlaySound("hit");
     }
 
     public void hitFinished()

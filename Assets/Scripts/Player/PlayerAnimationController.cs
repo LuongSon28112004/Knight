@@ -135,6 +135,7 @@ public class PlayerAnimationController : ModelMonoBehaviour
             skill++;
             if (skill == 3)
                 skill = 0;
+            SoundFXManager.Instance.PlaySound("attack");
         }
     }
 
@@ -163,13 +164,10 @@ public class PlayerAnimationController : ModelMonoBehaviour
     /// </summary>
     public void Hurting()
     {
-        //Time.timeScale = 0;
         anim.SetTrigger("Hit");
         anim.SetFloat("Hitted", 0);
-
-        //await Task.Delay(500); // Đợi 2 giây (vẫn hoạt động khi Time.timeScale = 0)
-
-        // Time.timeScale = 1;
+        SoundFXManager.Instance.PlaySound("hit");
+       
         Debug.Log("Hurting animation kết thúc, tiếp tục xử lý!");
     }
 
