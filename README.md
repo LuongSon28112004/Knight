@@ -10,16 +10,12 @@ Apple Knight là một trò chơi hành động 2D thuộc thể loại platform
 
 <table width="100%">
   <tr>
-    <td width="50%"><img src="![image](https://github.com/user-attachments/assets/a71aef84-7fd8-412a-8091-9d94f072dd9e)
-" width="100%"/></td>
-    <td width="50%"><img src="![image](https://github.com/user-attachments/assets/e17f4ef5-0b6d-47bf-bd41-fe4d2356062e)
-" width="100%"/></td>
+    <td width="50%"><img src="https://github.com/user-attachments/assets/a71aef84-7fd8-412a-8091-9d94f072dd9e" width="100%"/></td>
+    <td width="50%"><img src="https://github.com/user-attachments/assets/e17f4ef5-0b6d-47bf-bd41-fe4d2356062e" width="100%"/></td>
   </tr>
   <tr>
-    <td width="50%"><img src="![image](https://github.com/user-attachments/assets/63aff73f-5488-4e56-b6ca-b5f396cc8adb)
-" width="100%"/></td>
-    <td width="50%"><img src="![image](https://github.com/user-attachments/assets/8a48509d-f373-4dbc-bbed-90ffdc063ab9)
-" width="100%"/></td>
+    <td width="50%"><img src="https://github.com/user-attachments/assets/63aff73f-5488-4e56-b6ca-b5f396cc8adb" width="100%"/></td>
+    <td width="50%"><img src="https://github.com/user-attachments/assets/8a48509d-f373-4dbc-bbed-90ffdc063ab9" width="100%"/></td>
   </tr>
 </table>
 
