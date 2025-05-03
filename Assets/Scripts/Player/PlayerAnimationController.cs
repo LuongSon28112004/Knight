@@ -14,8 +14,9 @@ public class PlayerAnimationController : ModelMonoBehaviour
     private float skill = 0;
     PlayerDamagerReceiver playerDamagerReceiver;
     PlayerMovement playerMovement;
-
+    
     [SerializeField] private Joystick joystick;
+    [SerializeField] private AttackButton attackButton;
 
     [SerializeField]
     private bool attacked = false;
@@ -46,6 +47,7 @@ public class PlayerAnimationController : ModelMonoBehaviour
     private void Start()
     {
         this.AddAnimationEvent();
+        attackButton.onAttackButtonClicked += () => attackingButtionMobile();
     }
 
     private void Update()
@@ -131,6 +133,20 @@ public class PlayerAnimationController : ModelMonoBehaviour
     private void attacking()
     {
         if (InputManager.Instance.OnKeyX && !attacked)
+        {
+            anim.SetTrigger("Attack");
+            anim.SetFloat("Skill", skill);
+            skill++;
+            if (skill == 3)
+                skill = 0;
+            SoundFXManager.Instance.PlaySound("attack");
+        }
+    }
+
+
+      private void attackingButtionMobile()
+    {
+        if (!attacked)
         {
             anim.SetTrigger("Attack");
             anim.SetFloat("Skill", skill);

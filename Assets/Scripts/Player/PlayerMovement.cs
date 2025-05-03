@@ -26,6 +26,9 @@ public class PlayerMovement : ModelMonoBehaviour
     [SerializeField]
     private PlayerAnimationController playerAnimationController;
 
+    [SerializeField]
+    private JumpButton jumpButton;
+
     public float JumpSpeed
     {
         get => jumpSpeed;
@@ -34,6 +37,7 @@ public class PlayerMovement : ModelMonoBehaviour
     {
         get => moveSpeed;
     }
+    public int JumpCount { get => jumpCount; }
 
     protected override void Awake()
     {
@@ -42,6 +46,12 @@ public class PlayerMovement : ModelMonoBehaviour
         playerAnimationController = transform
             .parent.Find("Model")
             .GetComponent<PlayerAnimationController>();
+    }
+
+    void Start()
+    {
+        jumpButton.OnJumpButton += () => jumpButtonMobile();
+        jumpButton.OnHighJumpButton += () => highJumpButtonMobile();
     }
 
     void FixedUpdate()
@@ -91,7 +101,7 @@ public class PlayerMovement : ModelMonoBehaviour
         float x = joystick.Horizontal;
         if (Mathf.Abs(x) < 0.1f)
             return;
-        m_rb.linearVelocity = new Vector2(x * moveSpeed, m_rb.linearVelocity.y);
+        m_rb.linearVelocity = new Vector2(x * moveSpeed * 2, m_rb.linearVelocity.y);
         this.flipDirection(x);
     }
 
@@ -108,6 +118,49 @@ public class PlayerMovement : ModelMonoBehaviour
         else if (value > 0)
         {
             spriteRenderer.flipX = false;
+        }
+    }
+
+    protected virtual void jumpButtonMobile()
+    {
+        handleJumpButton(PlayerCollider.Instance.IsGround);
+    }
+
+    /// <summary>
+    /// Nhảy nhân vật
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
+    protected virtual void handleJumpButton(bool isGround)
+    {
+        // Kiểm tra xem người chơi có đang đứng trên mặt đất
+        if (isGround && jumpCount == 0)
+        {
+            Debug.Log("jump");
+            jumpCount = 1;
+            hasReleasedJump = false;
+            m_rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            PlayerCollider.Instance.IsGround = false;
+        }
+    }
+
+    /// <summary>
+    /// Nhảy cao hơn
+    /// </summary>
+    /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
+    /// <param name="jumpCount">Số lần nhảy</param>
+    protected virtual void highJumpButtonMobile()
+    {
+        if (jumpCount == 1 && !PlayerCollider.Instance.IsGround)
+        {
+            hasReleasedJump = true;
+            if (hasReleasedJump)
+            {
+                Debug.Log("highJump");
+                jumpCount = 2;
+                hasReleasedJump = false; //tranh nhay 3 lan
+                m_rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            }
         }
     }
 

@@ -8,6 +8,13 @@ public class PlayerAttack : ModelMonoBehaviour
     private float fireRate = 2f;
     private bool canShoot = true;
 
+    [SerializeField] private ShootingButton shootingButton;
+
+    void Start()
+    {
+        shootingButton.OnShooting += ButtonShooting;
+    }
+
     private void Update()
     {
         this.Shooting();
@@ -25,7 +32,25 @@ public class PlayerAttack : ModelMonoBehaviour
                 && PlayerInventory.Instance.PlayerItems[new PlayerItem("Apple", "none")] > 0
             )
             {
-                Debug.Log("player Shooting");
+                StartCoroutine(ShootWithDelay());
+                PlayerInventory.Instance.RemovePlayerItem(new PlayerItem("Apple", "none"), 1);//tru bot tao khi ban ra
+            }
+        }catch(Exception ex)
+        {
+             Debug.LogWarning($"Error in Shooting: {ex.Message}");
+        }
+    }
+    
+    protected virtual void ButtonShooting()
+    {
+        try
+        {
+                if(canShoot
+                && PlayerInventory.Instance.PlayerItems.Count > 0
+                && PlayerInventory.Instance.PlayerItems[new PlayerItem("Apple", "none")] != null
+                && PlayerInventory.Instance.PlayerItems[new PlayerItem("Apple", "none")] > 0
+            )
+            {
                 StartCoroutine(ShootWithDelay());
                 PlayerInventory.Instance.RemovePlayerItem(new PlayerItem("Apple", "none"), 1);//tru bot tao khi ban ra
             }
@@ -49,12 +74,13 @@ public class PlayerAttack : ModelMonoBehaviour
             {
                 yield break;
             }
-            
+
             bulletApple.gameObject.SetActive(true);
             try
             {
                 SoundFXManager.Instance.PlaySound("PlayerAttack");
-            }catch (Exception soundEx)
+            }
+            catch (Exception soundEx)
             {
                 Debug.LogWarning("Không thể phát âm thanh PlayerAttack: " + soundEx.Message);
             }
