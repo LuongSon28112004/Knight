@@ -159,7 +159,7 @@ public class PlayerMovement : ModelMonoBehaviour
                 Debug.Log("highJump");
                 jumpCount = 2;
                 hasReleasedJump = false; //tranh nhay 3 lan
-                m_rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+                m_rb.AddForce(Vector2.up * jumpSpeed * 4 / 5, ForceMode2D.Impulse);
             }
         }
     }
@@ -210,7 +210,7 @@ public class PlayerMovement : ModelMonoBehaviour
                 Debug.Log("highJump");
                 jumpCount = 2;
                 hasReleasedJump = false; //tranh nhay 3 lan
-                m_rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+                m_rb.AddForce(Vector2.up * jumpSpeed * 4 / 5, ForceMode2D.Impulse);
             }
         }
     }
