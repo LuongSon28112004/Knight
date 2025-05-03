@@ -15,6 +15,8 @@ public class PlayerAnimationController : ModelMonoBehaviour
     PlayerDamagerReceiver playerDamagerReceiver;
     PlayerMovement playerMovement;
 
+    [SerializeField] private Joystick joystick;
+
     [SerializeField]
     private bool attacked = false;
     public bool Attacked
@@ -98,7 +100,7 @@ public class PlayerAnimationController : ModelMonoBehaviour
     {
         if (!isJumping) // Kiểm tra nếu không ở trạng thái nhảy
         {
-            if (InputManager.Instance.HorizontalInput != 0)
+            if (InputManager.Instance.HorizontalInput != 0 || joystick.Horizontal != 0)
             {
                 anim.SetBool("IsMoving", true);
                 anim.SetFloat("SpeedMoving", playerMovement.MoveSpeed);

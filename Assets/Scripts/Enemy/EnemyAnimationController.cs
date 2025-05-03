@@ -109,7 +109,7 @@ public class EnemyAnimationController : ModelMonoBehaviour
 
     public void hitAnimation()
     {
-        anim.CrossFade("EnemyHit", 0.1f); // Chuyển mượt sang animation Hit
+        // anim.CrossFade("EnemyHit", 0.1f); // Chuyển mượt sang animation Hit
         anim.SetBool("IsHitting", true);
         anim.SetBool("IsAttacking", false);
         anim.SetBool("IsMoving", false);

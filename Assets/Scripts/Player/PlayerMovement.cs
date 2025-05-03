@@ -15,6 +15,9 @@ public class PlayerMovement : ModelMonoBehaviour
     private const float MAX_SPEED = 5f;
 
     [SerializeField]
+    private Joystick joystick;
+
+    [SerializeField]
     private Rigidbody2D m_rb;
 
     [SerializeField]
@@ -44,6 +47,7 @@ public class PlayerMovement : ModelMonoBehaviour
     void FixedUpdate()
     {
         this.moving();
+        this.moveJoystick();
         this.IncreaseSpeedOverTime();
         this.jump();
         this.highJump();
@@ -68,7 +72,7 @@ public class PlayerMovement : ModelMonoBehaviour
     }
 
     /// <summary>
-    /// Di chuyển nhân vật  
+    /// Di chuyển nhân vật
     /// </summary>
     /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
     protected virtual void moving()
@@ -80,8 +84,19 @@ public class PlayerMovement : ModelMonoBehaviour
         this.flipDirection(x);
     }
 
+    protected void moveJoystick()
+    {
+        if (playerAnimationController.IsDead)
+            return;
+        float x = joystick.Horizontal;
+        if (Mathf.Abs(x) < 0.1f)
+            return;
+        m_rb.linearVelocity = new Vector2(x * moveSpeed, m_rb.linearVelocity.y);
+        this.flipDirection(x);
+    }
+
     /// <summary>
-    /// Lật hướng nhân vật 
+    /// Lật hướng nhân vật
     /// </summary>
     /// <param name="value">Giá trị đầu vào</param>
     protected void flipDirection(float value)
@@ -95,7 +110,6 @@ public class PlayerMovement : ModelMonoBehaviour
             spriteRenderer.flipX = false;
         }
     }
-
 
     /// <summary>
     /// Nhảy nhân vật
@@ -127,7 +141,7 @@ public class PlayerMovement : ModelMonoBehaviour
 
     /// <summary>
     /// Nhảy cao hơn
-    /// </summary>  
+    /// </summary>
     /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
     /// <param name="jumpCount">Số lần nhảy</param>
     protected virtual void highJump()
@@ -149,7 +163,7 @@ public class PlayerMovement : ModelMonoBehaviour
     }
 
     /// <summary>
-    /// Đặt lại số lần nhảy 
+    /// Đặt lại số lần nhảy
     /// </summary>
     /// <param name="isGround">Kiểm tra xem nhân vật có đang đứng trên mặt đất hay không</param>
     /// <param name="jumpCount">Số lần nhảy</param>
@@ -160,7 +174,6 @@ public class PlayerMovement : ModelMonoBehaviour
         {
             jumpCount = 0;
             hasReleasedJump = false;
-
         }
     }
 }
