@@ -82,6 +82,7 @@ public class PlayerDamageSender : DamageSender
             chestParticleSystem.transform.position = other.transform.position;
             chestParticleSystem.transform.rotation = other.transform.rotation;
             chestParticleSystem.Play();
+            RandomItem.Instance.SpawnItem(other.transform.position, other.transform.rotation); // Call the method to open the chest and give items
             Destroy(other.gameObject);
         }
     }
