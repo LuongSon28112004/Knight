@@ -67,7 +67,7 @@ public class PlayerAttack : ModelMonoBehaviour
             canShoot = false;
             Transform bulletApple = BulletPlayerSpawner.Instance.Spawn(
                 BulletPlayerSpawner.apple,
-                transform.parent.position + new Vector3(0, 0.3f, 0),
+                transform.parent.position - new Vector3(0, 0.3f, 0),
                 transform.parent.rotation
             );
             if (bulletApple == null)

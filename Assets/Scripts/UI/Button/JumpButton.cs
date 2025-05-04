@@ -10,6 +10,13 @@ public class JumpButton : MonoBehaviour
     public event Action OnJumpButton;
     public event Action OnHighJumpButton;
 
+    private bool isClickedJumpButton = false;
+    public bool IsClickedJumpButton
+    {
+        get => isClickedJumpButton;
+        set => isClickedJumpButton = value;
+    }
+
     void Start()
     {
         // Lấy Button component nếu chưa gán sẵn
@@ -22,6 +29,7 @@ public class JumpButton : MonoBehaviour
 
     private void OnJumpButtonClicked()
     {
+        isClickedJumpButton = true; // Đánh dấu nút đã được nhấn
         if (playerMovement.JumpCount == 0)
         {
             OnJumpButton?.Invoke();

@@ -14,9 +14,15 @@ public class PlayerAnimationController : ModelMonoBehaviour
     private float skill = 0;
     PlayerDamagerReceiver playerDamagerReceiver;
     PlayerMovement playerMovement;
-    
-    [SerializeField] private Joystick joystick;
-    [SerializeField] private AttackButton attackButton;
+
+    [SerializeField]
+    private Joystick joystick;
+
+    [SerializeField]
+    private AttackButton attackButton;
+
+    [SerializeField]
+    private JumpButton jumpButton;
 
     [SerializeField]
     private bool attacked = false;
@@ -81,7 +87,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
                     : null,
             };
 
-
             // Thêm sự kiện vào clip nếu có tên hàm hợp lệ
             if (!string.IsNullOrEmpty(aniEventLast.functionName))
             {
@@ -94,7 +99,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
                     Debug.LogError($"Failed to add event to clip {clip.name}: {ex.Message}");
                 }
             }
-
         }
     }
 
@@ -117,11 +121,14 @@ public class PlayerAnimationController : ModelMonoBehaviour
 
     private void jumping()
     {
-        if (InputManager.Instance.OnSpace && PlayerCollider.Instance.IsGround)
+        if (
+            InputManager.Instance.OnSpace || jumpButton.IsClickedJumpButton
+        )
         {
-            isJumping = true; // Đánh dấu là đang nhảy
             anim.SetFloat("SpeedJumping", playerMovement.JumpSpeed);
             anim.SetBool("IsMoving", true);
+            isJumping = true; // Đánh dấu là đang nhảy
+            jumpButton.IsClickedJumpButton = false; // Đặt lại trạng thái nút nhảy
         }
         else if (PlayerCollider.Instance.IsGround)
         {
@@ -143,8 +150,7 @@ public class PlayerAnimationController : ModelMonoBehaviour
         }
     }
 
-
-      private void attackingButtionMobile()
+    private void attackingButtionMobile()
     {
         if (!attacked)
         {
@@ -168,7 +174,6 @@ public class PlayerAnimationController : ModelMonoBehaviour
         Debug.Log("attack reset");
     }
 
-
     /// <summary>
     /// Đánh dấu là nhân vật không còn bị thương
     /// </summary>
@@ -185,10 +190,9 @@ public class PlayerAnimationController : ModelMonoBehaviour
         anim.SetTrigger("Hit");
         anim.SetFloat("Hitted", 0);
         SoundFXManager.Instance.PlaySound("hit");
-       
+
         Debug.Log("Hurting animation kết thúc, tiếp tục xử lý!");
     }
-
 
     /// <summary>
     /// Đánh dấu là nhân vật đã chết
@@ -205,5 +209,4 @@ public class PlayerAnimationController : ModelMonoBehaviour
     {
         //for update
     }
-
 }

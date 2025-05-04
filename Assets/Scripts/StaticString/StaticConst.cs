@@ -13,8 +13,8 @@ public static class StaticConst
     /// The minimum and maximum values for volume.  
     /// These values are used to define the range of volume levels in the audio system.
     /// </summary>
-    public const int MAX_COIN = 10;
+    public const int MAX_COIN = 5;
     public const int MIN_COIN = 1;
-    public const int MAX_HEALTH = 2;
-    public const int MIN_HEALTH = 1;
+    public const int MAX_HEALTH = 1;
+    public const int MIN_HEALTH = 0;
 }

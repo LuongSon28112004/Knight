@@ -7,6 +7,7 @@ public class ChestCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Apple"))
         {
+            Debug.Log("Player collided with the chest!"); // Log message for debugging
             OpenChest(); // Call the method to open the chest and give items
             Destroy(gameObject); // Destroy the chest after opening
         }
