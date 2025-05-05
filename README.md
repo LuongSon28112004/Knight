@@ -22,10 +22,10 @@ Apple Knight là một trò chơi hành động 2D thuộc thể loại platform
 ---
 
 ## 🎬 Video demo
-🔗 [Xem video demo trên YouTube]()
+🔗 [Xem video demo trên YouTube](https://www.youtube.com/watch?v=5idE-sPX6Qc)
 
 ## 📥 Tải xuống
-🔗 [Link Tải File APK]()
+🔗 [Link Tải File APK](https://drive.google.com/file/d/1PUq2dr-64oFGBjYTt8tsUu6xKgogg__v/view?usp=sharing)
 
 
 ---
@@ -34,11 +34,11 @@ Apple Knight là một trò chơi hành động 2D thuộc thể loại platform
 
 ### Trên Mobile
 - Joystick để di chuyển
-- Các nút tấn công, bắn cung, nhảy đặt ở góc dưới bên phải
+- Các nút tấn công, bắn, nhảy đặt ở góc dưới bên phải
 
 ### Trên PC
-- Phím mũi tên / A-D để di chuyển
-- Z để tấn công, X để nhảy, C để bắn
+- Phím A/D để di chuyển trái phải,space để nhảy
+- x để tấn công, c để bắn
 
 ---
 
